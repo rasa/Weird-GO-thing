@@ -1,8 +1,18 @@
 package main
-import "fmt"
-import "math/big"
+import ("fmt"
+	"math/big"
+	"os"
+	"strconv")
 func main() {
 	var d int = 40 // number of decimal places	
+	if len(os.Args) > 1 {
+		i, _ := strconv.Atoi(os.Args[1])
+		d = int(i)
+	} else {
+		fmt.Print("Enter text: ")
+		fmt.Scanln(&d)
+		fmt.Print("\n")
+	}	
 	p := uint(d * 4) // bits of precision
 	w := uint(1 + d / 2) // width of integers a & b
 	a := new(big.Float).SetPrec(p).SetInt64(0)
